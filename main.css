@@ -1,0 +1,129 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: MediumBlue;
+}
+
+a:hover {
+  background-color: lemonchiffon;
+}
+
+a:visited {
+  color: MediumBlue;
+}
+
+main {
+  width: 100%;
+  max-width: 70em;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 1em;
+  padding: 2em;
+  line-height: 1.5;
+}
+
+ul > li,
+ol > li {
+  padding: 0.2em 0;
+}
+
+a[target="_blank"]::after {
+  content: "↗";
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+form .inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
+form input[type="number"] {
+  width: 4em;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.css-variable {
+  font-family: monospace;
+  background-color: #0001;
+  border-radius: 3px;
+  padding: 4px 2px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+#preview {
+  margin: 1em 0;
+}
+
+.output-container {
+  position: relative;
+}
+
+.output {
+  border: 1px solid;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#fallback {
+  border-color: crimson;
+  color: crimson;
+}
+
+#fallback.black {
+  border-color: inherit;
+  border-color: black;
+  color: inherit;
+}
+
+#target {
+  position: absolute;
+  z-index: 10;
+  border-color: black;
+}
+
+pre {
+  background: #0001;
+  padding: 1em;
+}
+
+pre.narrow {
+  display: inline-block;
+  margin-top: 1em;
+}
+
+.output.hidden * {
+  visibility: hidden;
+}
+
+.comment {
+  color: darkgreen;
+  font-style: italic;
+}

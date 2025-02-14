@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Font Matcher</title>
+    <meta name="description" content="A tool to help match Web-fonts and fallback fonts.">
+    <link rel="icon" href="favicon.svg" type="image/x-svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.mjs" type="module"></script>
+  </head>
+  <body>
+    <main>
+      <h1>
+        <img
+          src="favicon.svg"
+          width="10"
+          height="11"
+          style="
+            display: inline;
+            height: 1em;
+            width: auto;
+            vertical-align: middle;
+          "
+          alt="Logo for the font matcher"
+        />
+        <code class="css-variable">@font-face</code> Font Matcher
+      </h1>
+      <section>
+        <p>
+          When using a web font you will see a
+          <a
+            href="https://fonts.google.com/knowledge/glossary/fout"
+            referrerpolicy="no-referrer"
+            target="_blank"
+            ><em>Flash Of Unstyled Text</em> (or FOUC)</a
+          >
+          due to the initial render of your web-safe fallback font and the Web
+          font that you have selected. This can result in disruptive layout
+          shift due to sizing differences between the fonts. You can use this
+          tool to match the web-safe and Web font sizes as closely as possible.
+        </p>
+        <p>
+          This tool is heavily inspired by the
+          <a
+            href="https://meowni.ca/font-style-matcher/"
+            referrerpolicy="no-referrer"
+            target="_blank"
+            >Font style matcher</a
+          >
+          by Monica Dinculescu but uses CSS descriptors that are supported in
+          the
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display"
+            referrerpolicy="no-referrer"
+            target="_blank"
+            ><code class="css-variable">@font-face</code> at-rule</a
+          >. This means that the font matching can be done entirely in CSS
+          without the need to make changes to the CSS using JavaScript once the
+          Web fonts have loaded.
+        </p>
+      </section>
+      <section>
+        <h2>Fallback font settings</h2>
+        <form id="fallback-form">
+          <div class="inputs">
+            <div class="input-item">
+              <span class="input-pair">
+                <label for="target-font">Target font:</label>
+                <input
+                  type="text"
+                  id="target-font"
+                  name="target-font"
+                  value="Verdana"
+                />
+              </span>
+              <small>Make sure that you have this font installed locally</small>
+            </div>
+            <span class="input-pair">
+              <label for="fallback-font">Fallback font:</label>
+              <input
+                type="text"
+                id="fallback-font"
+                name="fallback-font"
+                value="Arial"
+              />
+            </span>
+          </div>
+          <div class="inputs">
+            <span class="input-pair">
+              <label class="css-variable" for="size-adjust">size-adjust:</label>
+              <input
+                type="number"
+                id="size-adjust"
+                name="size-adjust"
+                value="115"
+              />
+            </span>
+            <span class="input-pair">
+              <label class="css-variable" for="ascent-override"
+                >ascent-override:</label
+              >
+              <input
+                type="number"
+                id="ascent-override"
+                name="ascent-override"
+                value="88"
+              />
+            </span>
+            <span class="input-pair">
+              <label class="css-variable" for="descent-override"
+                >descent-override:</label
+              >
+              <input
+                type="number"
+                id="descent-override"
+                name="descent-override"
+                value="17"
+              />
+            </span>
+          </div>
+        </form>
+        <details>
+          <summary>Tips on setting these numbers</summary>
+          <ol>
+            <li>
+              First set <code class="css-variable">size-adjust</code> to match
+              the length of the first line of text.
+            </li>
+            <li>
+              Then set <code class="css-variable">ascent-override</code> to
+              match the baselines of the first line of text.
+            </li>
+            <li>
+              Then set <code class="css-variable">descent-override</code> to
+              match the size of the preview content boxes.
+            </li>
+            <li>
+              Then preview with varying
+              <code class="css-variable">line-height</code> and
+              <code class="css-variable">font-size</code>.
+            </li>
+            <li>
+              You may need separate overrides for different font weights:
+              <ul>
+                <li>
+                  Browsers will often automatically switch out
+                  <code class="css-variable">Arial</code> for
+                  <code class="css-variable">Arial Bold</code> when the
+                  <code class="css-variable">font-weight</code> is bigger than
+                  <code class="css-variable">500</code>
+                </li>
+                <li>
+                  You can have multiple
+                  <code class="css-variable">@font-face</code> declarations with
+                  the same <code class="css-variable">font-family</code> name
+                  for different
+                  <code class="css-variable">font-weight</code> ranges:
+                  <pre class="narrow"><code>@font-face {
+  font-family: 'Fallback';
+  src: local('Arial');
+  font-weight: 100 500;
+  <span class="comment"># Add custom adjustments here</span>
+}
+@font-face {
+  font-family: 'Fallback';
+  src: local('Arial Bold');
+  font-weight: 501 900;
+  <span class="comment"># Add different custom adjustments here</span>
+}</code></pre>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </details>
+      </section>
+      <section id="preview">
+        <h2>Preview</h2>
+        <form id="preview-form">
+          <div class="inputs">
+            <span class="input-pair">
+              <label class="css-variable" for="font-size">font-size:</label>
+              <input type="string" id="font-size" name="font-size" value="16" />
+            </span>
+            <span class="input-pair">
+              <label class="css-variable" for="font-weight">font-weight:</label>
+              <input
+                type="number"
+                step="100"
+                id="font-weight"
+                name="font-weight"
+                value="500"
+                min="100"
+                max="900"
+              />
+            </span>
+            <span class="input-pair">
+              <label class="css-variable" for="line-height">line-height:</label>
+              <input
+                type="string"
+                id="line-height"
+                name="line-height"
+                value="normal"
+              />
+            </span>
+          </div>
+          <div class="inputs">
+            <span class="input-pair">
+              <label for="simulate-load">Simulate load behaviour</label>
+              <input type="checkbox" id="simulate-load" name="simulate-load" />
+            </span>
+          </div>
+        </form>
+        <div class="output-container">
+          <div id="preview-spacer"></div>
+          <div
+            id="fallback"
+            class="output"
+            style="font-family: 'Fallback'"
+          ></div>
+          <div id="target" class="output"></div>
+        </div>
+      </section>
+      <section>
+        <h2>CSS <code class="css-variable">@font-face</code> code</h2>
+        <pre><code id="fallback-font-css"></code></pre>
+      </section>
+    </main>
+  </body>
+</html>
