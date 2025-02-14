@@ -69,10 +69,12 @@ const updateFonts = (event) => {
   const simulateLoad = previewFormData.get("simulate-load")?.valueOf();
 
   clearInterval(currentInterval);
+
   if (simulateLoad) {
-    if (typeof currentInterval === "undefined") {
-      webfontPreview.classList.add("hidden");
-    }
+    webfontPreview.classList.remove("hidden");
+    fallbackPreview.classList.remove("hidden");
+
+    webfontPreview.classList.add("hidden");
 
     fallbackPreview.classList.add("black");
 
