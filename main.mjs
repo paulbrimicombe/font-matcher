@@ -61,6 +61,7 @@ const updateFonts = (event) => {
   const sizeAdjust = fallbackFormData.get("size-adjust")?.toString();
   const ascentOverride = fallbackFormData.get("ascent-override")?.toString();
   const descentOverride = fallbackFormData.get("descent-override")?.toString();
+  const lineGapOverride = fallbackFormData.get("line-gap-override")?.toString();
 
   const previewFormData = new FormData(previewForm);
   const fontSize = previewFormData.get("font-size")?.toString();
@@ -75,7 +76,6 @@ const updateFonts = (event) => {
     fallbackPreview.classList.remove("hidden");
 
     webfontPreview.classList.add("hidden");
-
     fallbackPreview.classList.add("black");
 
     currentInterval = setInterval(() => {
@@ -101,9 +101,10 @@ const updateFonts = (event) => {
   const fontFaceCSS = `@font-face {
   font-family: 'Fallback';
   src: local('${fallbackFont}');
-  size-adjust: ${sizeAdjust}%;
-  ascent-override: ${ascentOverride}%;
-  descent-override: ${descentOverride}%;
+  size-adjust: ${sizeAdjust ? `${sizeAdjust}%` : "initial"};
+  ascent-override: ${ascentOverride ? `${ascentOverride}%` : "initial"};
+  descent-override: ${descentOverride ? `${descentOverride}%` : "initial"};
+  line-gap-override: ${lineGapOverride ? `${lineGapOverride}%` : "initial"};
 }`;
 
   const outputCSS = `
@@ -128,3 +129,24 @@ const updateFonts = (event) => {
 updateFonts();
 fallbackForm.addEventListener("change", updateFonts);
 previewForm.addEventListener("change", updateFonts);
+window.addEventListener("resize", updateFonts);
+
+const disableInputs = document.querySelectorAll(
+  '.input-disable > input[type="checkbox"]'
+);
+for (const input of disableInputs) {
+  if (input instanceof HTMLInputElement) {
+    const [inputID] = input.name.split("-disable");
+    const actualInput = document.getElementById(inputID);
+
+    if (actualInput instanceof HTMLInputElement) {
+      input.addEventListener("click", () => {
+        if (input.checked) {
+          actualInput.disabled = true;
+        } else {
+          actualInput.disabled = false;
+        }
+      });
+    }
+  }
+}

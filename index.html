@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>Font Matcher</title>
-    <meta name="description" content="A tool to help match Web-fonts and fallback fonts.">
+    <meta
+      name="description"
+      content="A tool to help match Web-fonts and fallback fonts."
+    />
     <link rel="icon" href="favicon.svg" type="image/x-svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="reset.css" />
@@ -52,7 +55,7 @@
           by Monica Dinculescu but uses CSS descriptors that are supported in
           the
           <a
-            href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display"
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face"
             referrerpolicy="no-referrer"
             target="_blank"
             ><code class="css-variable">@font-face</code> at-rule</a
@@ -88,76 +91,143 @@
             </span>
           </div>
           <div class="inputs">
-            <span class="input-pair">
-              <label class="css-variable" for="size-adjust">size-adjust:</label>
-              <input
-                type="number"
-                id="size-adjust"
-                name="size-adjust"
-                value="115"
-              />
-            </span>
-            <span class="input-pair">
-              <label class="css-variable" for="ascent-override"
-                >ascent-override:</label
-              >
-              <input
-                type="number"
-                id="ascent-override"
-                name="ascent-override"
-                value="88"
-              />
-            </span>
-            <span class="input-pair">
-              <label class="css-variable" for="descent-override"
-                >descent-override:</label
-              >
-              <input
-                type="number"
-                id="descent-override"
-                name="descent-override"
-                value="17"
-              />
-            </span>
+            <div class="optional-input">
+              <span class="input-pair">
+                <label class="css-variable" for="size-adjust"
+                  >size-adjust:</label
+                >
+                <input
+                  type="number"
+                  id="size-adjust"
+                  name="size-adjust"
+                  value="115"
+                />
+              </span>
+              <span class="input-pair, input-disable">
+                <label for="size-adjust-disable">disable:</label>
+                <input
+                  type="checkbox"
+                  id="size-adjust-disable"
+                  name="size-adjust-disable"
+                />
+              </span>
+            </div>
+            <div class="optional-input">
+              <span class="input-pair">
+                <label class="css-variable" for="ascent-override"
+                  >ascent-override:</label
+                >
+                <input
+                  type="number"
+                  id="ascent-override"
+                  name="ascent-override"
+                  value="86"
+                />
+              </span>
+              <span class="input-pair, input-disable">
+                <label for="ascent-override-disable">disable:</label>
+                <input
+                  type="checkbox"
+                  id="ascent-override-disable"
+                  name="ascent-override-disable"
+                />
+              </span>
+            </div>
+            <div class="optional-input">
+              <span class="input-pair">
+                <label class="css-variable" for="descent-override"
+                  >descent-override:</label
+                >
+                <input
+                  type="number"
+                  id="descent-override"
+                  name="descent-override"
+                  value="19"
+                />
+              </span>
+              <span class="input-pair, input-disable">
+                <label for="descent-override-disable">disable:</label>
+                <input
+                  type="checkbox"
+                  id="descent-override-disable"
+                  name="descent-override-disable"
+                />
+              </span>
+            </div>
+            <div class="optional-input">
+              <span class="input-pair">
+                <label class="css-variable" for="line-gap-override"
+                  >line-gap-override:</label
+                >
+                <input
+                  type="number"
+                  id="line-gap-override"
+                  name="line-gap-override"
+                  value="0"
+                />
+              </span>
+              <span class="input-pair, input-disable">
+                <label for="line-gap-override-disable">disable:</label>
+                <input
+                  type="checkbox"
+                  id="line-gap-override-disable"
+                  name="line-gap-override-disable"
+                />
+              </span>
+            </div>
           </div>
         </form>
         <details>
           <summary>Tips on setting these numbers</summary>
-          <ol>
-            <li>
-              First set <code class="css-variable">size-adjust</code> to match
-              the length of the first line of text.
-            </li>
-            <li>
-              Then set <code class="css-variable">ascent-override</code> to
-              match the baselines of the first line of text.
-            </li>
-            <li>
-              Then set <code class="css-variable">descent-override</code> to
-              match the size of the preview content boxes.
-            </li>
-            <li>
-              Then preview with varying
-              <code class="css-variable">line-height</code> and
-              <code class="css-variable">font-size</code>.
-            </li>
-            <li>
-              You may need separate overrides for different font weights:
-              <ul>
-                <li>
-                  Browsers will often automatically switch out
-                  <code class="css-variable">Arial</code> for
-                  <code class="css-variable">Arial Bold</code> when the
-                  <code class="css-variable">font-weight</code> is bigger than
-                  <code class="css-variable">500</code>
-                </li>
-                <li>
-                  You can have multiple
-                  <code class="css-variable">@font-face</code> declarations with
-                  the same <code class="css-variable">font-family</code> name
-                  for different
-                  <code class="css-variable">font-weight</code> ranges:
-                  <pre class="narrow"><code>@font-face {
+          <div>
+            <h3>Getting the best results</h3>
+            <ol>
+              <li>
+                Set <code class="css-variable">ascent-override</code>,
+                <code class="css-variable">descent-override</code>, and
+                <code class="css-variable">line-gap-override</code> to zero and
+                make sure that <code class="css-variable">line-height</code> is
+                set to "normal".
+              </li>
+              <li>
+                Disable <code class="css-variable">ascent-override</code> and
+                adjust <code class="css-variable">size-adjust</code> to match
+                the length of the first line of text.
+              </li>
+              <li>
+                Enable <code class="css-variable">ascent-override</code> and
+                adjust it to match the baselines of the first line of text.
+              </li>
+              <li>
+                Then set <code class="css-variable">descent-override</code> to
+                match the size of the preview content boxes.
+              </li>
+              <li>
+                Preview with varying
+                <code class="css-variable">line-height</code> and
+                <code class="css-variable">font-size</code>.
+              </li>
+            </ol>
+            <h3>Notes</h3>
+            <ul>
+              <li>
+                You may need separate overrides for different font weights:
+                <ul>
+                  <li>
+                    Browsers will often automatically switch out
+                    <code class="css-variable">Arial</code> for
+                    <code class="css-variable">Arial Bold</code> when the
+                    <code class="css-variable">font-weight</code> is bigger than
+                    <code class="css-variable">500</code>
+                  </li>
+                  <li>
+                    You can have multiple
+                    <code class="css-variable">@font-face</code> declarations
+                    with the same
+                    <code class="css-variable">font-family</code> name for
+                    different
+                    <code class="css-variable">font-weight</code> ranges:
+                    <pre class="narrow"><code>@font-face {
   font-family: 'Fallback';
   src: local('Arial');
   font-weight: 100 500;
@@ -169,10 +239,17 @@
   font-weight: 501 900;
   <span class="comment"># Add different custom adjustments here</span>
 }</code></pre>
-                </li>
-              </ul>
-            </li>
-          </ol>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                The <code class="css-variable">line-gap-override</code> setting
+                only has an effect for
+                <code class="css-variable">line-height: normal;</code> and is
+                often best overridden to be zero.
+              </li>
+            </ul>
+          </div>
         </details>
       </section>
       <section id="preview">

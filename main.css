@@ -45,13 +45,40 @@ form {
 form .inputs {
   display: flex;
   flex-direction: row;
-  gap: 1em;
+  gap: 0.5em;
   flex-wrap: wrap;
   align-items: start;
 }
 
+form .optional-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 4px solid #0005;
+  border-right: 4px solid #0005;
+  padding: 0 0.2em;
+  border-radius: 0.3em;
+  gap: 0.2em;
+}
+
+form .optional-input .input-disable {
+  font-size: 0.8em;
+  align-self: flex-end;
+}
+
 form input[type="number"] {
   width: 4em;
+}
+
+details > div {
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  border-left: 4px solid #0005;
+  border-radius: 0.3em;
+}
+
+details h3 {
+  margin-top: 1em;
 }
 
 .input-item {
@@ -119,7 +146,7 @@ pre.narrow {
   margin-top: 1em;
 }
 
-.output.hidden * {
+.hidden {
   visibility: hidden;
 }
 
