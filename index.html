@@ -67,28 +67,25 @@
       <section>
         <h2>Fallback font settings</h2>
         <form id="fallback-form">
-          <div class="inputs">
-            <div class="input-item">
-              <span class="input-pair">
-                <label for="target-font">Target font:</label>
-                <input
-                  type="text"
-                  id="target-font"
-                  name="target-font"
-                  value="Verdana"
-                />
-              </span>
-              <small>Make sure that you have this font installed locally</small>
-            </div>
-            <span class="input-pair">
-              <label for="fallback-font">Fallback font:</label>
-              <input
-                type="text"
-                id="fallback-font"
-                name="fallback-font"
-                value="Arial"
-              />
-            </span>
+          <div class="inputs-vertical">
+            <label for="target-font">Target font:</label>
+            <input
+              type="text"
+              id="target-font"
+              name="target-font"
+              value="Montserrat"
+            />
+            <label for="target-font-css">Target font CSS:</label>
+            <textarea id="target-font-css" name="target-font-css">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Symbols+2&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');</textarea
+            >
+            <label for="fallback-font">Fallback font:</label>
+            <input
+              type="text"
+              id="fallback-font"
+              name="fallback-font"
+              value="Arial"
+            />
           </div>
           <div class="inputs">
             <div class="optional-input">
@@ -100,7 +97,7 @@
                   type="number"
                   id="size-adjust"
                   name="size-adjust"
-                  value="115"
+                  value="114"
                 />
               </span>
               <span class="input-pair, input-disable">
@@ -121,7 +118,7 @@
                   type="number"
                   id="ascent-override"
                   name="ascent-override"
-                  value="86"
+                  value="63"
                 />
               </span>
               <span class="input-pair, input-disable">
@@ -142,7 +139,7 @@
                   type="number"
                   id="descent-override"
                   name="descent-override"
-                  value="19"
+                  value="0"
                 />
               </span>
               <span class="input-pair, input-disable">
@@ -163,7 +160,7 @@
                   type="number"
                   id="line-gap-override"
                   name="line-gap-override"
-                  value="0"
+                  value="45"
                 />
               </span>
               <span class="input-pair, input-disable">

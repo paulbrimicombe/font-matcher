@@ -39,7 +39,7 @@ a[target="_blank"]::after {
 form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.5em;
 }
 
 form .inputs {
@@ -48,6 +48,12 @@ form .inputs {
   gap: 0.5em;
   flex-wrap: wrap;
   align-items: start;
+}
+
+form .inputs-vertical {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
 }
 
 form .optional-input {
@@ -68,6 +74,18 @@ form .optional-input .input-disable {
 
 form input[type="number"] {
   width: 4em;
+}
+
+form textarea {
+  height: 10em;
+  font-family: monospace;
+}
+
+form .input-pair {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
 }
 
 details > div {

@@ -23,6 +23,9 @@ const previewSpacer = getElementAs("preview-spacer", HTMLElement);
 
 const fallbackCSSSnippet = getElementAs("fallback-font-css", HTMLElement);
 
+const targetFontCSSStyleElement = document.createElement("style");
+webfontPreview.appendChild(targetFontCSSStyleElement);
+
 const styleElement = document.createElement("style");
 webfontPreview.appendChild(styleElement);
 
@@ -57,6 +60,7 @@ const updateFonts = (event) => {
   const fallbackFormData = new FormData(fallbackForm);
 
   const targetFont = fallbackFormData.get("target-font")?.toString();
+  const targetFontCSS = fallbackFormData.get("target-font-css")?.toString();
   const fallbackFont = fallbackFormData.get("fallback-font")?.toString();
   const sizeAdjust = fallbackFormData.get("size-adjust")?.toString();
   const ascentOverride = fallbackFormData.get("ascent-override")?.toString();
@@ -112,8 +116,10 @@ const updateFonts = (event) => {
   font-size: ${fontSize}px;
   font-weight: ${fontWeight};
   line-height: ${lineHeight};
-}`;
+}
+`;
 
+  targetFontCSSStyleElement.textContent = targetFontCSS ?? "";
   styleElement.textContent = fontFaceCSS + outputCSS;
   fallbackCSSSnippet.textContent = fontFaceCSS;
 
