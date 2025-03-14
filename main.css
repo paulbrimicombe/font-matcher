@@ -45,7 +45,7 @@ form {
 form .inputs {
   display: flex;
   flex-direction: row;
-  gap: 0.5em;
+  gap: 1em;
   flex-wrap: wrap;
   align-items: start;
 }
@@ -118,10 +118,6 @@ section {
   gap: 1em;
 }
 
-#preview {
-  margin: 1em 0;
-}
-
 .output-container {
   position: relative;
 }
@@ -129,17 +125,27 @@ section {
 .output {
   border: 1px solid;
   padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
   position: absolute;
   top: 0;
   left: 0;
+  --text-border-colour: transparent;
+}
+
+.output span {
+  border: 1px solid var(--text-border-colour);
+}
+
+.output > p {
+  margin: 0.5em;
 }
 
 #fallback {
   border-color: crimson;
   color: crimson;
+}
+
+.borders #fallback {
+  --text-border-colour: #dc143caa;
 }
 
 #fallback.black {
@@ -152,6 +158,10 @@ section {
   position: absolute;
   z-index: 10;
   border-color: black;
+}
+
+.borders #target {
+  --text-border-colour: #000a;
 }
 
 pre {

@@ -97,7 +97,7 @@
                   type="number"
                   id="size-adjust"
                   name="size-adjust"
-                  value="114"
+                  value="115"
                 />
               </span>
               <span class="input-pair, input-disable">
@@ -118,7 +118,7 @@
                   type="number"
                   id="ascent-override"
                   name="ascent-override"
-                  value="63"
+                  value="84"
                 />
               </span>
               <span class="input-pair, input-disable">
@@ -139,7 +139,7 @@
                   type="number"
                   id="descent-override"
                   name="descent-override"
-                  value="0"
+                  value="22"
                 />
               </span>
               <span class="input-pair, input-disable">
@@ -160,7 +160,7 @@
                   type="number"
                   id="line-gap-override"
                   name="line-gap-override"
-                  value="45"
+                  value="0"
                 />
               </span>
               <span class="input-pair, input-disable">
@@ -182,27 +182,45 @@
               <li>
                 Set <code class="css-variable">ascent-override</code>,
                 <code class="css-variable">descent-override</code>, and
-                <code class="css-variable">line-gap-override</code> to zero and
-                make sure that <code class="css-variable">line-height</code> is
-                set to "normal".
+                <code class="css-variable">line-gap-override</code> to zero; set
+                <code class="css-variable">font-size</code> to something quite
+                large (e.g. 40) and make sure that
+                <code class="css-variable">line-height</code> is set to
+                "normal".
               </li>
               <li>
-                Disable <code class="css-variable">ascent-override</code> and
-                adjust <code class="css-variable">size-adjust</code> to match
+                Disable
+                <code class="css-variable">ascent-override</code>,
+                <code class="css-variable">descent-override</code> and
+                <code class="css-variable">line-gap-override</code> and enable
+                "Show borders around text".
+              </li>
+              <li>
+                Adjust <code class="css-variable">size-adjust</code> to match
                 the length of the first line of text.
               </li>
               <li>
-                Enable <code class="css-variable">ascent-override</code> and
-                adjust it to match the baselines of the first line of text.
+                Enable <code class="css-variable">ascent-override</code>,
+                <code class="css-variable">descent-override</code> and
+                <code class="css-variable">line-gap-override</code>. Adjust
+                <code class="css-variable">ascent-override</code> until the
+                baselines of the first line of text are lined up.
               </li>
               <li>
-                Then set <code class="css-variable">descent-override</code> to
-                match the size of the preview content boxes.
+                Then adjust
+                <code class="css-variable">descent-override</code> until the
+                bottom borders of the first line of text match.
+              </li>
+              <li>
+                Then adjust
+                <code class="css-variable">line-gap-override</code> until the
+                other lines of text match.
               </li>
               <li>
                 Preview with varying
                 <code class="css-variable">line-height</code> and
-                <code class="css-variable">font-size</code>.
+                <code class="css-variable">font-size</code>, making small
+                adjustments as necessary.
               </li>
             </ol>
             <h3>Notes</h3>
@@ -211,7 +229,7 @@
                 You may need separate overrides for different font weights:
                 <ul>
                   <li>
-                    Browsers will often automatically switch out
+                    Browsers will often automatically switch out e.g.
                     <code class="css-variable">Arial</code> for
                     <code class="css-variable">Arial Bold</code> when the
                     <code class="css-variable">font-weight</code> is bigger than
@@ -242,8 +260,12 @@
               <li>
                 The <code class="css-variable">line-gap-override</code> setting
                 only has an effect for
-                <code class="css-variable">line-height: normal;</code> and is
-                often best overridden to be zero.
+                <code class="css-variable">line-height: normal;</code>.
+              </li>
+              <li>
+                <code class="css-variable">line-height: normal;</code>
+                definitely makes things harder — if you can set a fixed line
+                height, matching across different sizes will be much easier.
               </li>
             </ul>
           </div>
@@ -283,6 +305,10 @@
             <span class="input-pair">
               <label for="simulate-load">Simulate load behaviour</label>
               <input type="checkbox" id="simulate-load" name="simulate-load" />
+            </span>
+            <span class="input-pair">
+              <label for="show-borders">Show borders around text</label>
+              <input type="checkbox" id="show-borders" name="show-borders" />
             </span>
           </div>
         </form>

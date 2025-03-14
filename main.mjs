@@ -19,6 +19,7 @@ const previewForm = getElementAs("preview-form", HTMLFormElement);
 
 const fallbackPreview = getElementAs("fallback", HTMLElement);
 const webfontPreview = getElementAs("target", HTMLElement);
+const previewContainer = getElementAs("preview", HTMLElement);
 const previewSpacer = getElementAs("preview-spacer", HTMLElement);
 
 const fallbackCSSSnippet = getElementAs("fallback-font-css", HTMLElement);
@@ -41,8 +42,11 @@ const previewText = [
 const setPreviewText = (element) => {
   previewText.forEach((text) => {
     const paragraph = document.createElement("p");
-    paragraph.textContent = text;
     element.appendChild(paragraph);
+
+    const textSpan = document.createElement("span");
+    textSpan.textContent = text;
+    paragraph.appendChild(textSpan);
   });
 };
 
@@ -72,6 +76,7 @@ const updateFonts = (event) => {
   const fontWeight = previewFormData.get("font-weight")?.toString();
   const lineHeight = previewFormData.get("line-height")?.toString();
   const simulateLoad = previewFormData.get("simulate-load")?.valueOf();
+  const showBorders = previewFormData.get("show-borders")?.valueOf();
 
   clearInterval(currentInterval);
 
@@ -99,6 +104,12 @@ const updateFonts = (event) => {
     fallbackPreview.classList.remove("black");
     fallbackPreview.classList.remove("hidden");
     webfontPreview.classList.remove("hidden");
+  }
+
+  if (showBorders) {
+    previewContainer.classList.add("borders");
+  } else {
+    previewContainer.classList.remove("borders");
   }
 
   styleElement.innerText = "";
